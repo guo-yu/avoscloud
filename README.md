@@ -17,7 +17,9 @@ html part:
     <script src="dist/avoscloud.min.js"></script>
   </head>
   <body ng-app="app">
-    <div id="demo" ng-controller="basic"></div>
+    <div id="demo" ng-controller="basic">
+      <button ng-click="createFoo();">Create A `foo` Object</button>
+    </div>
   </body>
 </html>
 ```
@@ -35,10 +37,13 @@ angular
   }])
   .controller('basic', ['avoscloud', function(avoscloud) {
     console.log(avoscloud);
-    var me = avoscloud.user.get('xxx', function(){
-      me.name = 'I have a new `Name` now.';
-      me.$save();
-    });
+    $scope.createFoo = function() {
+      var myclass = new avoscloud.classes();
+      myclass.foo = 'bar';
+      myclass.$save({
+        className: 'foo'
+      });
+    }
   }]);
 ```
 
