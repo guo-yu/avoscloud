@@ -18,12 +18,6 @@
 
     // Use X-Domain to request cross domain
     $httpProvider.defaults.useXDomain = true;
-    $httpProvider.defaults.headers.common['X-AVOSCloud-Application-Id'] = this.configs.appId ?
-      this.configs.appId :
-      this.configs['X-AVOSCloud-Application-Id'];
-    $httpProvider.defaults.headers.common['X-AVOSCloud-Application-Key'] = this.configs.appKey ?
-      this.configs.appKey :
-      this.configs['X-AVOSCloud-Application-Key'];
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
 
     // Init SDK exports
@@ -40,15 +34,29 @@
         self.configs[k] = v;
       });
       this.configs = joinHost(this.configs);
+
+      $httpProvider.defaults.headers.common['X-AVOSCloud-Application-Id'] = this.configs.appId ?
+        this.configs.appId :
+        this.configs['X-AVOSCloud-Application-Id'];
+      $httpProvider.defaults.headers.common['X-AVOSCloud-Application-Key'] = this.configs.appKey ?
+        this.configs.appKey :
+        this.configs['X-AVOSCloud-Application-Key'];
+
       return this.configs;
     }
   }
 
   // init SDK
   function initSDK($resource, self) {
-    var apiList = {
+    var apiMap = {
       'login': 'login',
       'signin': 'login', // alias
+      'push': 'push',
+      'sms': 'requestSmsCode', // alias
+      'msg': 'requestSmsCode', // alias
+      'rtm': 'rtm/messages/logs',
+      'functions': 'functions',
+      'feedback': 'feedback',
       'requestPasswordReset': 'requestPasswordReset',
       'resetPassword': 'requestPasswordReset', // alias
       'requestEmailVerify': 'requestEmailVerify',
@@ -58,66 +66,18 @@
       'requestLoginSmsCode': 'requestLoginSmsCode',
       'smsLogin': 'requestLoginSmsCode', // alias
       'requestSmsCode': 'requestSmsCode',
-      'sms': 'requestSmsCode', // alias
-      'msg': 'requestSmsCode', // alias
-      'push': 'push',
-      'functions': 'functions',
-      'feedback': 'feedback',
-      'rtm': 'rtm/messages/logs',
-      'verifyMobilePhone': {
-        uri: '/:code',
-        params: {
-          code: '@code'
-        }
-      },
-      'verifySmsCode': {
-        uri: '/:code',
-        params: {
-          code: '@code'
-        }
-      },
-      'classes': {
-        uri: '/:className',
-        params: {
-          className: '@className'
-        }
-      },
-      'users': {
-        uri: '/:objectId/:action',
-        params: {
-          objectId: '@objectId',
-          action: '@action'
-        }
-      },
-      'roles': {
-        uri: '/:objectId',
-        params: {
-          objectId: '@objectId'
-        }
-      },
-      'installations': {
-        uri: '/:objectId',
-        params: {
-          objectId: '@objectId'
-        }
-      },
-      // stats/appinfo
-      // stats/appmetrics
-      'stats': {
-        uri: '/:type',
-        params: {
-          type: '@type'
-        }
-      }
+      'verifyMobilePhone': 'verifyMobilePhone/:code',
+      'verifySmsCode': 'verifySmsCode/:code',
+      'classes': 'classes/:className',
+      'users': 'users/:objectId/:action',
+      'roles': 'roles/:objectId',
+      'installations': 'installations/:objectId',
+      'stats': 'stats/:type'
     };
 
     // create `$resource` instance
     var sdk = {};
-    angular.forEach(apiList, function(params, key) {
-      var url = angular.isObject(params) && params.uri ? 
-        self.configs.host + key + params.uri :
-        self.configs.host + params;
-
+    angular.forEach(apiMap, function(endpoint, key) {
       var extraMethods = {
         'post': {
           method: 'POST'
@@ -129,11 +89,8 @@
           method: 'PUT'
         }
       };
-
       sdk[key] = $resource(
-        url, 
-        angular.isObject(params) ? params : {}, 
-        extraMethods
+        self.configs.host + endpoint, null, extraMethods
       );
     });
     return sdk;

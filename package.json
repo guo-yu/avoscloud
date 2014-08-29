@@ -4,7 +4,7 @@
   "description": "a avoscloud service module based on Angular.js and ngResource.",
   "main": "dist/avoscloud.min.js",
   "scripts": {
-    "serve": "node_modules/.bin/serve .",    
+    "serve": "node_modules/.bin/serve .",
     "watch": "node_modules/.bin/rewatch src/*.js -c 'npm run build'",
     "build": "node_modules/.bin/uglifyjs src/avoscloud.js --mangle --compress -o dist/avoscloud.min.js --source-map dist/avoscloud.min.js.map --source-map-url avoscloud.min.js.map --source-map-root ../src/avoscloud.js",
     "dev": "npm run serve & npm run watch"

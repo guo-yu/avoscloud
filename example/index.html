@@ -5,12 +5,14 @@
   <title>AVOS Cloud</title>
   <script src="../bower_components/angular/angular.js"></script>
   <script src="../bower_components/angular-resource/angular-resource.min.js"></script>
-  <script src="../dist/avoscloud.min.js"></script>
+  <script src="../src/avoscloud.js"></script>
   <script src="configs.js"></script>
 </head>
 <body ng-app="app">
   <div id="wrapper">
-    <div id="avos" class="avos" ng-controller="basic"></div>
+    <div id="avos" class="avos" ng-controller="basic">
+      <button ng-click="createFoo();">Create A `foo` Object</button>
+    </div>
   </div> 
   <script>
     angular
@@ -21,8 +23,18 @@
           'X-AVOSCloud-Application-Key': appKey || 'xxxxxxx'
         });
       }])
-      .controller('basic', ['avoscloud', function(avoscloud) {
-        console.log(avoscloud);
+      .controller('basic', ['$scope','avoscloud', function($scope, avoscloud) {
+        // console.log(avoscloud);
+        $scope.createFoo = function() {
+          var myclass = new avoscloud.classes();
+          myclass.foo = 'bar';
+          myclass.$save({
+            className: 'foo'
+          });
+        };
+        avoscloud.users.get({},function(data){
+          console.log(data);
+        });
       }]);
   </script>
 </body>
