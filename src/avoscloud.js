@@ -94,6 +94,18 @@
         self.configs.host + endpoint, null, extraMethods
       );
     });
+
+    // shortcut method to set custom headers
+    sdk.headers = function(k, v) {
+      if (!k || !v) 
+        return;
+      if (k === 'session' || k === 'sid')
+        k = 'X-AVOSCloud-Session-Token';
+      
+      $httpProvider.defaults.headers.common[k] = v;
+      return $httpProvider.defaults.headers;
+    };
+
     return sdk;
   }
 
