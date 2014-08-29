@@ -1,0 +1,24 @@
+{
+  "name": "avoscloud",
+  "version": "0.1.0",
+  "authors": [
+    "Guo Yu <o.u.turing@gmail.com>"
+  ],
+  "main": "dist/avoscloud.min.js",
+  "keywords": [
+    "avos",
+    "avoscloud"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/turingou/avoscloud",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "*"
+  }
+}
