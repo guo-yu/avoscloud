@@ -2,6 +2,10 @@
 
 a avoscloud service module based on Angular.js and ngResource.
 
+### ToDo
+
+- [ ] Wrap operators
+
 ### Installation
 ```bash
 $ bower install avoscloud --save
