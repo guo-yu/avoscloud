@@ -1,10 +1,8 @@
-;(function(window, angular, NProgress) {
+;(function(angular) {
   'use strict';
 
   if (!angular)
     throw new Error('avoscloud.init(); angular.js required.');
-
-  var NProgressExist = NProgress && NProgress.start && NProgress.done;
 
   // Inject as a angular module
   angular
@@ -101,7 +99,7 @@
         return;
       if (k === 'session' || k === 'sid')
         k = 'X-AVOSCloud-Session-Token';
-      
+
       $httpProvider.defaults.headers.common[k] = v;
       return $httpProvider.defaults.headers;
     };
@@ -127,4 +125,4 @@
     return obj;
   }
 
-})(window, window.angular, window.NProgress);
+})(window.angular);
