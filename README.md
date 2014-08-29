@@ -1,4 +1,4 @@
-## avoscloud
+## avoscloud ![release](http://img.shields.io/github/release/turingou/avoscloud.svg?style=flat)&nbsp;![npm](http://img.shields.io/npm/v/angular-avoscloud.svg?style=flat)
 
 a avoscloud service module based on Angular.js and ngResource.
 
@@ -8,6 +8,22 @@ $ bower install avoscloud --save
 ```
 
 ### Example
+html part:
+```html
+<html>
+  <head>
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.min.js"></script>
+    <script src="dist/avoscloud.min.js"></script>
+  </head>
+  <body ng-app="app">
+    <div id="demo" ng-controller="basic"></div>
+  </body>
+</html>
+```
+
+javascript part:
+
 ```javascript
 angular
   .module('app', ['avoscloud'])

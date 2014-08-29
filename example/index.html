@@ -3,10 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <title>AVOS Cloud</title>
-  <script src="../bower_components/angular/angular.min.js"></script>
-  <script src="../src/avoscloud.js"></script>
+  <script src="../bower_components/angular/angular.js"></script>
+  <script src="../bower_components/angular-resource/angular-resource.min.js"></script>
+  <script src="../dist/avoscloud.min.js"></script>
+  <script src="configs.js"></script>
 </head>
-<body>
+<body ng-app="app">
   <div id="wrapper">
     <div id="avos" class="avos" ng-controller="basic"></div>
   </div> 
@@ -15,13 +17,13 @@
       .module('app', ['avoscloud'])
       .config(['avoscloudProvider',function(avoscloudProvider) {
         avoscloudProvider.config({
-          'X-AVOSCloud-Application-Id': 'xxxxxxx',
-          'X-AVOSCloud-Application-Key': 'xxxxxxx'
+          'X-AVOSCloud-Application-Id': appID || 'xxxxxxx',
+          'X-AVOSCloud-Application-Key': appKey || 'xxxxxxx'
         });
       }])
       .controller('basic', ['avoscloud', function(avoscloud) {
         console.log(avoscloud);
-      }])
+      }]);
   </script>
 </body>
 </html>
