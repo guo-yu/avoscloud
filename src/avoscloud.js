@@ -72,7 +72,8 @@
       'users': 'users/:objectId/:action',
       'roles': 'roles/:objectId',
       'installations': 'installations/:objectId',
-      'stats': 'stats/:type'
+      'stats': 'stats/:type',
+      'batch': 'batch'
     };
 
     // create `$resource` instance
