@@ -1,4 +1,4 @@
-## avoscloud ![release](http://img.shields.io/github/release/turingou/avoscloud.svg?style=flat)&nbsp;![npm](http://img.shields.io/npm/v/angular-avoscloud.svg?style=flat)
+## avoscloud ![npm](http://img.shields.io/npm/v/angular-avoscloud.svg?style=flat)&nbsp;![release](http://img.shields.io/github/release/turingou/avoscloud.svg?style=flat)
 
 a avoscloud service module based on Angular.js and ngResource.
 
