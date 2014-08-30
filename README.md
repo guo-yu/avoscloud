@@ -5,6 +5,7 @@ a avoscloud service module based on Angular.js and ngResource.
 ### ToDo
 
 - [ ] Wrap operators
+- [ ] Basic Error handler
 
 ### Installation
 ```bash

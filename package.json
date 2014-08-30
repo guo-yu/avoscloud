@@ -1,6 +1,6 @@
 {
   "name": "angular-avoscloud",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "a avoscloud service module based on Angular.js and ngResource.",
   "main": "dist/avoscloud.min.js",
   "scripts": {

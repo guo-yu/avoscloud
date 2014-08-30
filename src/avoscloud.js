@@ -66,7 +66,7 @@
       'requestSmsCode': 'requestSmsCode',
       'verifyMobilePhone': 'verifyMobilePhone/:code',
       'verifySmsCode': 'verifySmsCode/:code',
-      'classes': 'classes/:className',
+      'classes': 'classes/:className/:objectId',
       'users': 'users/:objectId/:action',
       'roles': 'roles/:objectId',
       'installations': 'installations/:objectId',
