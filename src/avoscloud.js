@@ -20,7 +20,7 @@
 
     // Init SDK exports
     this.$get = ['$resource', function($resource) {
-      return initSDK($resource, this);
+      return initSDK($resource, $httpProvider, this);
     }];
 
     // Custom configs function
@@ -45,7 +45,7 @@
   }
 
   // init SDK
-  function initSDK($resource, self) {
+  function initSDK($resource, $httpProvider, self) {
     var apiMap = {
       'login': 'login',
       'signin': 'login', // alias
