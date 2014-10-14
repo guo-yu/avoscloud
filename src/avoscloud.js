@@ -33,12 +33,11 @@
       });
       this.configs = joinHost(this.configs);
 
-      $httpProvider.defaults.headers.common['X-AVOSCloud-Application-Id'] = this.configs.appId ?
-        this.configs.appId :
-        this.configs['X-AVOSCloud-Application-Id'];
-      $httpProvider.defaults.headers.common['X-AVOSCloud-Application-Key'] = this.configs.appKey ?
-        this.configs.appKey :
-        this.configs['X-AVOSCloud-Application-Key'];
+      $httpProvider.defaults.headers.common['X-AVOSCloud-Application-Id'] = this.configs.appId || this.configs['X-AVOSCloud-Application-Id'];
+
+      if (this.configs.appKey || this.configs['X-AVOSCloud-Application-Key']) {
+        $httpProvider.defaults.headers.common['X-AVOSCloud-Application-Key'] = this.configs.appKey || this.configs['X-AVOSCloud-Application-Key'];
+      }
 
       return this.configs;
     }

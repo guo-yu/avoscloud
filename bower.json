@@ -1,6 +1,6 @@
 {
   "name": "avoscloud",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "a avoscloud service module based on Angular.js and ngResource.",
   "authors": [
     "Guo Yu <o.u.turing@gmail.com>"
@@ -22,6 +22,7 @@
   ],
   "dependencies": {
     "angular": "~1.2.23",
-    "angular-resource": "~1.2.23"
+    "angular-resource": "~1.2.23",
+    "angular-md5": "~0.1.7"
   }
 }
